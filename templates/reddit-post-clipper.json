@@ -38,6 +38,11 @@
 			"name": "subreddit",
 			"value": "{{selector:shreddit-post?subreddit-prefixed-name}}",
 			"type": "text"
+		},
+		{
+			"name": "image",
+			"value": "{{selector:img#post-image?src}}",
+			"type": "text"
 		}
 	],
 	"triggers": [
