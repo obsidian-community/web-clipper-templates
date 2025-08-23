@@ -1,0 +1,61 @@
+﻿{
+  "schemaVersion": "0.1.0",
+  "name": "Medium - Concise Summary",
+  "behavior": "create",
+  "noteNameFormat": "{{title|safe_name}}",
+  "path": "Clips/Articles/Medium",
+  "context": "{{selectorHtml:article|remove_html:(\"img,aside,script,style,nav,header,footer\")|markdown|replace:\"/```[\\\\s\\\\S]*?```/g\":\"\"|replace:\"/\\n{3,}/g\":\"\\n\\n\"|slice:0,8000|trim}}",
+  "properties": [
+    {
+      "name": "Title",
+      "value": "{{title}}",
+      "type": "text"
+    },
+    {
+      "name": "Source",
+      "value": "{{url}}",
+      "type": "text"
+    },
+    {
+      "name": "Site",
+      "value": "{{site}}",
+      "type": "text"
+    },
+    {
+      "name": "Author",
+      "value": "{{author|wikilink}}",
+      "type": "text"
+    },
+    {
+      "name": "Published",
+      "value": "{{published|date:\"YYYY-MM-DD\"}}",
+      "type": "date"
+    },
+    {
+      "name": "Created",
+      "value": "{{date|date:\"YYYY-MM-DD\"}}",
+      "type": "date"
+    },
+    {
+      "name": "Words",
+      "value": "{{words}}",
+      "type": "number"
+    },
+    {
+      "name": "Reading time (min)",
+      "value": "{{words|calc:\"/238\"|round}}",
+      "type": "number"
+    },
+    {
+      "name": "tags",
+      "value": "{{selector:a[href^="/tag/"] > div|replace:("":"-")}}",
+      "type": "multitext"
+    }
+  ],
+  "triggers": [
+    "https://medium.com/",
+    "/^https?:\\/\\/([a-z0-9-]+\\.)?medium\\.com\\//",
+    "schema:@Article"
+  ],
+  "noteContentFormat": "# {{title}}\n\n## Summary\n{{\"Based solely on the provided context, write ONE paragraph (70-110 words). No headings, no lists, no bullets, no tables, no code blocks. Plain text. ASCII only. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,code,pre,ul,ol,li,h1,h2,h3,h4,h5,h6,table,thead,tbody,tr,td,th\"|strip_md|replace:\"/^\\s*[-*•].*$/gm\":\"\"|replace:\"/^(?:\\d+\\.|\\d+\\))\\s.*$/gm\":\"\"|replace:\"/\\s+/g\":\" \"|trim}}\n\n## Key points\n{{\"Based solely on the provided context, return 3-6 key points as a Markdown list. Each on its own line, prefixed exactly with '- ', 6-12 words, non-overlapping, no trailing punctuation. ASCII only. Do not include surrounding quotes.\"|replace:\"/^'|'$/g\":\"\"|strip_tags:\"p,div,span,ul,ol,li\"|replace:\"/^(?:\\*|•|—|–|\\d+\\.|\\d+\\))\\s*/gm\":\"- \"|replace:\"/\\s*-\\s/g\":\"\\n- \"|replace:\"/[\\.;:!\\?]+$/gm\":\"\"|replace:\"/[^\\x00-\\x7F]/g\":\"\"|replace:\"/^\\s*-\\s*$/gm\":\"\"|replace:\"/^\\s*$/\":\"- insufficient context\"|trim}}\n"
+}
