@@ -48,7 +48,7 @@
     },
     {
       "name": "tags",
-      "value": "{{selector:a[href^="/tag/"] > div|replace:("":"-")}}",
+      "value": "{{selector:a[href^=\"/tag/\"] > div|replace:(\"\":\"-\")}}",
       "type": "multitext"
     }
   ],
