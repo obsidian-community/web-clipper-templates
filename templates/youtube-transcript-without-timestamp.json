@@ -1,6 +1,6 @@
 {
 	"schemaVersion": "0.1.0",
-	"name": "YouTube with transcript",
+	"name": "YouTube with transcript - no timestamp",
 	"behavior": "create",
 	"noteContentFormat": "## About\n\ntype:: #type/video/youtube/new\n\n![{{title}}]({{schema:@VideoObject:embedUrl|replace:\"embed/\":\"watch?v=\"}})\n\n## Description\n\n{{schema:@VideoObject:description}}\n\n## Notes\n\nYT=\n\n\n## Transcript\n\n{{selectorHtml:.segment-text|first|replace:\"&nbsp;\":\" \"|join:" "|markdown}}",
 	"properties": [
