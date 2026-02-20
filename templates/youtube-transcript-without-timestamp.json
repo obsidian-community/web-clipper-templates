@@ -1,0 +1,63 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "YouTube with transcript - no timestamp",
+	"behavior": "create",
+	"noteContentFormat": "## About\n\ntype:: #type/video/youtube/new\n\n![{{title}}]({{schema:@VideoObject:embedUrl|replace:\"embed/\":\"watch?v=\"}})\n\n## Description\n\n{{schema:@VideoObject:description}}\n\n## Notes\n\nYT=\n\n\n## Transcript\n\n{{selectorHtml:.segment-text|first|replace:\"&nbsp;\":\" \"|join:" "|markdown}}",
+	"properties": [
+		{
+			"name": "created",
+			"value": "{{time|date:\\\"YYYY-MM-DDTHH:mm:ssZ\\\"}}",
+			"type": "datetime"
+		},
+		{
+			"name": "reviewed",
+			"value": "",
+			"type": "datetime"
+		},
+		{
+			"name": "url",
+			"value": "{{schema:@VideoObject:embedUrl|replace:\\\"embed/\\\":\\\"watch?v=\\\"}}",
+			"type": "text"
+		},
+		{
+			"name": "title",
+			"value": "{{schema:@VideoObject:name}}",
+			"type": "text"
+		},
+		{
+			"name": "channel",
+			"value": "{{schema:@VideoObject:author}}",
+			"type": "text"
+		},
+		{
+			"name": "related",
+			"value": "[[Videos]]",
+			"type": "multitext"
+		},
+		{
+			"name": "published",
+			"value": "{{schema:@VideoObject:uploadDate|date:\\\"YYYY-MM-DD\\\"}}",
+			"type": "datetime"
+		},
+		{
+			"name": "thumbnailUrl",
+			"value": "{{schema:@VideoObject:thumbnailUrl|first}}",
+			"type": "text"
+		},
+		{
+			"name": "duration",
+			"value": "{{schema:@VideoObject:duration|replace:\\\"PT\\\",\\\"\\\",\\\"S\\\",\\\"\\\"}}",
+			"type": "text"
+		},
+		{
+			"name": "watched",
+			"value": "",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https://www.youtube.com/watch"
+	],
+	"noteNameFormat": "{{schema:@VideoObject:uploadDate|date:\"YYYY-MM-DD\"}} VIDEO {{schema:@VideoObject:author}} - {{schema:@VideoObject:name|safe_name|trim}}",
+	"path": ""
+}
