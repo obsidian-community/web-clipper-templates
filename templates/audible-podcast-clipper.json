@@ -1,0 +1,68 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Podcast (audible / radio.at)",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Podcasts Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{% set creatorLength = schema:@PodcastSeries:author[*].name|length %} {% if creatorLength > 0 %}{{schema:@PodcastSeries:author[*].name|wikilink}} {% else %} {{schema:@PodcastSeries:author.name|split:\\\",\\\"|replace:\\\" and \\\":\\\"\\\"|trim|wikilink}} {% endif %}",
+			"type": "multitext"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{schema:@PodcastSeries:aggregateRating.ratingValue}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{schema:@PodcastSeries:aggregateRating.ratingCount}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{{schema:@PodcastSeries:datePublished}}",
+			"type": "number"
+		},
+		{
+			"name": "languages",
+			"value": "{% set languageLength = schema:@PodcastSeries:inLanguage[*].name|length %} {% if languageLength == 0 %} {{schema:@PodcastSeries:inLanguage|capitalize}} {% else %} {{schema:@PodcastSeries:inLanguage[*].name|capitalize}} {% endif %}",
+			"type": "multitext"
+		},
+		{
+			"name": "description",
+			"value": "{{schema:@PodcastSeries:description|markdown}}",
+			"type": "text"
+		},
+		{
+			"name": "genres",
+			"value": "{{selector:.product-topictag-impression adbl-chip}}",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@PodcastSeries:image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@PodcastSeries"
+	],
+	"noteNameFormat": "{{schema:@PodcastSeries:name|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}

@@ -1,0 +1,113 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "BoardGameGeek",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Boardgames Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "reimplements",
+			"value": "{% set r = selector:li.feature a[name=\\\"classifications-reimplements\\\"] ~ div.feature-description ul.text-block a.ng-binding %} {% set r_length = r|length %} {% if r_length <=5 %} {% for item in r%}[[{{item|safe_name}}]],{% endfor %} {% else %} [[{{r|safe_name}}]] {% endif %}",
+			"type": "multitext"
+		},
+		{
+			"name": "bggTypes",
+			"value": "{{selector:li.feature a[name=\\\"classifications-boardgamesubdomain\\\"] ~ div.feature-description a.ng-binding}}",
+			"type": "multitext"
+		},
+		{
+			"name": "bggCategories",
+			"value": "{{selector:li.feature a[name=\\\"classifications-boardgamecategory\\\"] ~ div.feature-description ul.text-block a.ng-binding}}",
+			"type": "multitext"
+		},
+		{
+			"name": "bggMechanisms",
+			"value": "{{selector:li.feature a[name=\\\"classifications-boardgamemechanic\\\"] ~ div.feature-description ul.text-block a.ng-binding}}",
+			"type": "multitext"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{selector:div.rating-overall span[itemprop=\\\"ratingValue\\\"]}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{selector:ul.game-header-title-summary > li > a|first|split:\\\"\\t\\\"|first|trim}}",
+			"type": "number"
+		},
+		{
+			"name": "complexityRating",
+			"value": "{{selector:span[item-poll-button=\\\"boardgameweight\\\"] span|first}}",
+			"type": "number"
+		},
+		{
+			"name": "minPlayers",
+			"value": "{{selector:p.gameplay-item-primary span[ng-if=\\\"min > 0\\\"]|first}}",
+			"type": "number"
+		},
+		{
+			"name": "maxPlayers",
+			"value": "{%set max = selector:p.gameplay-item-primary span[ng-if=\\\"max>0 && min != max\\\"]|first|replace:\\\"–\\\":\\\"\\\"|trim %}{% if max %}{{max}}{% else %}{{selector:p.gameplay-item-primary span[ng-if=\\\"min > 0\\\"]|first|trim}}{%    endif  %}",
+			"type": "number"
+		},
+		{
+			"name": "playtime",
+			"value": "{{selector:gameplay-module > div > div > ul > li:nth-child(2) > p > span > span|replace:\\\"–\\\":\\\" - \\\"}} minutes",
+			"type": "text"
+		},
+		{
+			"name": "year",
+			"value": "{{selector:div.game-header-title-info span.game-year|replace:\\\"(\\\":\\\"\\\",\\\")\\\":\\\"\\\"}}",
+			"type": "number"
+		},
+		{
+			"name": "priceString",
+			"value": "{% set msrp = selector:div[amazon-msrp]|first|replace:\\\"/MSRP:\\\\s*/\\\":\\\"\\\"|trim %}{% set srp = selector:li[type=\\\"listprice\\\"] .item-listing__msrp|first|replace:\\\"/Suggested Retail Price:\\\\s*/\\\":\\\"\\\"|trim %}{% set amazon = selector:a[href*=\\\"amazon.com\\\"] .item-listing__btn-text|first|replace:\\\"/.*?((?:US)?\\\\$|€|£)\\\\s*([0-9]+(?:\\\\.[0-9]{2})?).*/\\\":\\\"$1$2\\\"|trim %}{% set other = selector:meta[itemprop=\\\"price\\\"]?content|first|trim %}{% set raw = msrp ?? srp ?? amazon ?? other %}{{ raw|replace:\\\"/^\\\\\\\\\"+|\\\\\\\\\"+$/g\\\":\\\"\\\"|replace:\\\"/.*?((?:US)?\\\\$|€|£)\\\\s*([0-9]+(?:\\\\.[0-9]{2})?).*/\\\":\\\"$1$2\\\"|replace:\\\"/^US\\\\$/\\\":\\\"$\\\"|trim }}",
+			"type": "text"
+		},
+		{
+			"name": "summary",
+			"value": "{{selector:span[itemprop=\\\"description\\\"]}}",
+			"type": "text"
+		},
+		{
+			"name": "description",
+			"value": "{{selector:article.game-description-body}}",
+			"type": "text"
+		},
+		{
+			"name": "cover",
+			"value": "{{selector:div.game-header-image > ng-include > div > a > img?src}}",
+			"type": "text"
+		},
+		{
+			"name": "banner",
+			"value": "{{selector:div.game-primary-background-image?style|replace:\\\"background-image: url(\\\\\"\\\":\\\"\\\"|replace:\\\"\\\\\");\\\":\\\"\\\"}}",
+			"type": "text"
+		},
+		{
+			"name": "cssclasses",
+			"value": "cover-top, cover-horizontal-contain",
+			"type": "multitext"
+		}
+	],
+	"triggers": [
+		"https://boardgamegeek.com/boardgame"
+	],
+	"noteNameFormat": "{{title|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}
