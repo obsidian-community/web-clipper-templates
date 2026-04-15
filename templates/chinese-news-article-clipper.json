@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "Chinese News & Tech Articles (中文资讯)",
+  "behavior": "create",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}} {{title|safe_name}}",
+  "path": "Clippings",
+  "noteContentFormat": "## {{title}}\n\n> Author: {{author}} | Source: [{{site}}]({{url}}) | {{published|date:\"YYYY-MM-DD\"}}\n\n{{content}}\n\n---\n\n## Highlights\n\n{{selection}}\n\n{{highlights}}",
+  "properties": [
+    { "name": "title",     "value": "{{title}}",                         "type": "text" },
+    { "name": "source",    "value": "{{url}}",                           "type": "text" },
+    { "name": "author",    "value": "{{author}}",                        "type": "text" },
+    { "name": "published", "value": "{{published|date:\"YYYY-MM-DD\"}}", "type": "date" },
+    { "name": "saved",     "value": "{{date}}",                          "type": "date" },
+    { "name": "type",      "value": "article",                           "type": "text" },
+    { "name": "tags",      "value": "clipping",                          "type": "multitext" }
+  ],
+  "triggers": [
+    "*.wsj.com",
+    "cn.wsj.com",
+    "caixin.com",
+    "*.sspai.com",
+    "36kr.com",
+    "huxiu.com",
+    "ifanr.com",
+    "*.lifeweek.com.cn",
+    "*.v2ex.com",
+    "okjike.com",
+    "*.jike.com"
+  ]
+}

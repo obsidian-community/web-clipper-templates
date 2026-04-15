@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "Xiaohongshu / RedNote (小红书)",
+  "behavior": "create",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}} {{title|safe_name}}",
+  "path": "Clippings",
+  "noteContentFormat": "## {{title}}\n\n> Author: {{author}} | Source: [Xiaohongshu]({{url}})\n\n### Images\n\n![]({{selector:.swiper-slide:not(.swiper-slide-duplicate) img?src|unique|join:\")\n\n![](\"}})\n\n### Content\n\n{{selectorHtml:#detail-desc|markdown}}\n\n---\n\n> [View original]({{url}})\n\n---\n\n## Highlights\n\n{{selection}}\n\n{{highlights}}",
+  "properties": [
+    { "name": "title",  "value": "{{title}}",  "type": "text" },
+    { "name": "source", "value": "{{url}}",    "type": "text" },
+    { "name": "author", "value": "{{author}}", "type": "text" },
+    { "name": "saved",  "value": "{{date}}",   "type": "date" },
+    { "name": "type",   "value": "note",       "type": "text" },
+    { "name": "tags",   "value": "clipping, xiaohongshu", "type": "multitext" }
+  ],
+  "triggers": [
+    "www.xiaohongshu.com",
+    "xhslink.com"
+  ]
+}
