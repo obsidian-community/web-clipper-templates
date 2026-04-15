@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "WeChat Article (微信公众号)",
+  "behavior": "create",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}} {{title|safe_name}}",
+  "path": "Clippings",
+  "noteContentFormat": "## {{title}}\n\n> Author: {{meta:property:og:article:author}} | Source: [WeChat]({{url}})\n\n{{selectorHtml:#js_content|markdown}}\n\n---\n\n## Highlights\n\n{{selection}}\n\n{{highlights}}",
+  "properties": [
+    { "name": "title",  "value": "{{title}}",                           "type": "text" },
+    { "name": "source", "value": "{{url}}",                             "type": "text" },
+    { "name": "author", "value": "{{meta:property:og:article:author}}", "type": "text" },
+    { "name": "saved",  "value": "{{date}}",                            "type": "date" },
+    { "name": "type",   "value": "article",                             "type": "text" },
+    { "name": "tags",   "value": "clipping, wechat",                    "type": "multitext" }
+  ],
+  "triggers": [
+    "mp.weixin.qq.com"
+  ]
+}

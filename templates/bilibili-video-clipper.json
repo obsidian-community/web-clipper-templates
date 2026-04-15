@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "Bilibili Video (B站视频)",
+  "behavior": "create",
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}} {{title|replace:\"_哔哩哔哩_bilibili\":\"\"|safe_name}}",
+  "path": "Clippings/Videos",
+  "noteContentFormat": "## {{title|replace:\"_哔哩哔哩_bilibili\":\"\"}}\n\n<iframe src=\"https://player.bilibili.com/player.html?bvid={{url|replace:\"https://www.bilibili.com/video/\":\"\"|split:\"/\"|first|split:\"?\"|first}}&high_quality=1&quality=80&autoplay=0\" width=\"100%\" height=\"500\" frameborder=\"0\" allowfullscreen></iframe>\n\n> Channel: {{meta:name:author}} | Saved: {{date|date:\"YYYY-MM-DD\"}} | [Open on Bilibili]({{url}})\n\n---\n\n## Notes\n\n{{selection}}\n\n{{highlights}}",
+  "properties": [
+    { "name": "title",   "value": "{{title|replace:\"_哔哩哔哩_bilibili\":\"\"}}",  "type": "text" },
+    { "name": "source",  "value": "{{url}}",                "type": "text" },
+    { "name": "channel", "value": "{{meta:name:author}}",   "type": "text" },
+    { "name": "saved",   "value": "{{date}}",               "type": "date" },
+    { "name": "type",    "value": "video",                  "type": "text" },
+    { "name": "tags",    "value": "video, bilibili",        "type": "multitext" }
+  ],
+  "triggers": [
+    "*.bilibili.com"
+  ]
+}
