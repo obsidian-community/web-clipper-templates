@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "Linkedin Profile Info",
+  "behavior": "create",
+  "noteContentFormat": "## About\nPresent working at [[{{selector:.pv-profile main > section div > ul > li:nth-child(1) > button > span > div}}]] like {{selector:div.pv-profile main > section > div > ul > li:first-child a[data-field=\"experience_company_logo\"] div > span:first-child}}.\n\nBefore was working at [[{{selector:div.pv-profile main > section > div > ul > li:nth-child(2) a[data-field=\"experience_company_logo\"] span:nth-child(2) > span}}]] like {{selector:div.pv-profile main > section > div > ul > li:nth-child(2) a[data-field=\"experience_company_logo\"] div > span:first-child}}\n{{selector:#profile-content > div > div.pv-profile > div > div > main > section:nth-child(2) > div.ph5.pv3 > div > div > div > span:nth-child(1)}}\n\n### Linkedin Complete\n{{content}}",
+  "properties": [
+    {
+      "name": "date",
+      "value": "{{date}}",
+      "type": "text"
+    },
+    {
+      "name": "name",
+      "value": "{{selector:[id^=\\\"ember\\\"] > h1}}",
+      "type": "text"
+    },
+    {
+      "name": "linkedin",
+      "value": "{{url}}",
+      "type": "text"
+    },
+    {
+      "name": "type",
+      "value": "person",
+      "type": "text"
+    },
+    {
+      "name": "responsability",
+      "value": "{{selector:div.pv-profile main > section > div > ul > li:first-child a[data-field=\\\"experience_company_logo\\\"] div > span:first-child}}",
+      "type": "text"
+    },
+    {
+      "name": "company",
+      "value": "[[{{selector:.pv-profile main > section div > ul > li:nth-child(1) > button > span > div}}]]",
+      "type": "text"
+    }
+  ],
+  "triggers": [
+    "https://linkedin.com/in/"
+  ],
+  "noteNameFormat": "{{selector:[id^=\"ember\"] > h1}}",
+  "path": ""
+}
