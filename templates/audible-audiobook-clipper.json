@@ -1,0 +1,73 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Audiobook (audible / radio.at)",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Audiobooks Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{% set creatorLength = schema:@Audiobook:author[*].name|length %} {% if creatorLength > 0 %}{{schema:@Audiobook:author[*].name|wikilink}} {% else %} {{schema:@Audiobook:author.name|split:\\\",\\\"|replace:\\\" and \\\":\\\"\\\"|trim|wikilink}} {% endif %}",
+			"type": "multitext"
+		},
+		{
+			"name": "durationString",
+			"value": "{{schema:@Audiobook:duration}}",
+			"type": "text"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{schema:@Audiobook:aggregateRating.ratingValue}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{schema:@Audiobook:aggregateRating.ratingCount}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{{schema:@Audiobook:datePublished}}",
+			"type": "number"
+		},
+		{
+			"name": "language",
+			"value": "{% set languageLength = schema:@Audiobook:inLanguage[*].name|length %} {% if languageLength == 0 %} {{schema:@Audiobook:inLanguage|capitalize}} {% else %} {{schema:@Audiobook:inLanguage[*].name|capitalize}} {% endif %}",
+			"type": "text"
+		},
+		{
+			"name": "description",
+			"value": "{{schema:@Audiobook:description|markdown}}",
+			"type": "text"
+		},
+		{
+			"name": "genres",
+			"value": "{{selector:.product-topictag-impression adbl-chip}}",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@Audiobook:image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@Audiobook"
+	],
+	"noteNameFormat": "{{schema:@Audiobook:name|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}

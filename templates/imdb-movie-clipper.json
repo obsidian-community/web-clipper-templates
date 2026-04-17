@@ -1,0 +1,68 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Movie (imdb)",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Movie Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "genres",
+			"value": "{{schema:@Movie:genre}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{{schema:@Movie:director[*].name|merge:schema:@Movie:actor[*].name}}",
+			"type": "multitext"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{schema:@Movie:aggregateRating.ratingValue}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{schema:@Movie:aggregateRating.ratingCount}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{{schema:@Movie:datePublished|slice:0,4}}",
+			"type": "number"
+		},
+		{
+			"name": "duration",
+			"value": "{{meta:property:og:description|split:\\\"|\\\"|first|trim}}",
+			"type": "number"
+		},
+		{
+			"name": "description",
+			"value": "{{schema:@Movie:description}}",
+			"type": "text"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@Movie:image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@Movie"
+	],
+	"noteNameFormat": "{% if schema:@Movie:alternateName %} {{schema:@Movie:alternateName|replace:\"/\":\"⧸\"|safe_name}} {% else %} {{schema:@Movie:name|replace:\"/\":\"⧸\"|safe_name}} {% endif %}",
+	"path": "Clippings"
+}

@@ -1,0 +1,73 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Show (imdb)",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Show Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "genres",
+			"value": "{{schema:@TVSeries:genre}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{{schema:@TVSeries:actor[*].name}}",
+			"type": "multitext"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{schema:@TVSeries:aggregateRating.ratingValue}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{schema:@TVSeries:aggregateRating.ratingCount}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{{schema:@TVSeries:datePublished|slice:0,4}}",
+			"type": "number"
+		},
+		{
+			"name": "seasons",
+			"value": "{{selector:#browse-episodes-season?aria-label|split:\\\" \\\"|first}}",
+			"type": "number"
+		},
+		{
+			"name": "duration",
+			"value": "{{meta:property:og:description|split:\\\"|\\\"|first|trim}}",
+			"type": "number"
+		},
+		{
+			"name": "description",
+			"value": "{{schema:@TVSeries:description}}",
+			"type": "text"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@TVSeries:image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@TVSeries"
+	],
+	"noteNameFormat": "{{schema:@TVSeries:name|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}

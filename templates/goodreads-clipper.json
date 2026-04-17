@@ -1,0 +1,68 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Books (goodreads)",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Book Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "genres",
+			"value": "{{selector:.BookPageMetadataSection__genreButton}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{{schema:@Book:author[*].name|wikilink}}",
+			"type": "multitext"
+		},
+		{
+			"name": "pageCount",
+			"value": "{{schema:@Book:numberOfPages}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{schema:@Book:aggregateRating.ratingValue}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{schema:@Book:aggregateRating.ratingCount}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{{selector:p[data-testid=\\\"publicationInfo\\\"]|slice:-4}}",
+			"type": "number"
+		},
+		{
+			"name": "description",
+			"value": "{{selector:.DetailsLayoutRightParagraph__widthConstrained|first}}",
+			"type": "text"
+		},
+		{
+			"name": "cover",
+			"value": "{{schema:@Book:image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"schema:@Book"
+	],
+	"noteNameFormat": "{{schema:@Book:name|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}

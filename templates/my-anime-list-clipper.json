@@ -1,0 +1,73 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "MyAnimeList",
+	"behavior": "create",
+	"noteContentFormat": "",
+	"properties": [
+		{
+			"name": "categories",
+			"value": "[[Manga Database]]",
+			"type": "multitext"
+		},
+		{
+			"name": "subcategories",
+			"value": "{% for item in selector:.leftside .spaceit_pad %}{% set infos = item|split:\\\":\\\" %}{% set category = infos|first %}{% if category == \\\"Type\\\" %}{{infos|last|trim|wikilink}}{% endif %}{% endfor %}",
+			"type": "multitext"
+		},
+		{
+			"name": "links",
+			"value": "{{url}}",
+			"type": "multitext"
+		},
+		{
+			"name": "releaseStatus",
+			"value": "{% for item in selector:.leftside .spaceit_pad %}{% set infos = item|split:\\\":\\\" %}{% set category = infos|first %}{% if category == \\\"Status\\\" %}{{infos|last}}{% endif %}{% endfor %}",
+			"type": "text"
+		},
+		{
+			"name": "genres",
+			"value": "{% set genres = selector:span[itemprop=\\\"genre\\\"] %} {{genres|last}}, {{genres|slice:0,-1|join:\\\", \\\"}}",
+			"type": "multitext"
+		},
+		{
+			"name": "creators",
+			"value": "{{author|replace:\\\"/\\\\s*\\\\([^)]*\\\\)/g\\\":\\\"\\\"|replace:\\\"/,\\\\s+/g\\\":\\\",\\\"|split:\\\",\\\"|wikilink}}",
+			"type": "multitext"
+		},
+		{
+			"name": "onlineRating",
+			"value": "{{selector:.fl-l.score}}",
+			"type": "number"
+		},
+		{
+			"name": "onlineRatingCount",
+			"value": "{{selector:span[itemprop=\\\"ratingCount\\\"]}}",
+			"type": "number"
+		},
+		{
+			"name": "year",
+			"value": "{% for item in selector:.leftside .spaceit_pad %}{% set infos = item|split:\\\":\\\" %}{% set category = infos|first %}{% if category == \\\"Published\\\" %}{{infos|last|replace:\\\"/^.*?(\\\\d{4}).*$/\\\":\\\"$1\\\"}}{% endif %}{% endfor %}",
+			"type": "number"
+		},
+		{
+			"name": "description",
+			"value": "{{meta:property:og:description}}",
+			"type": "text"
+		},
+		{
+			"name": "synonyms",
+			"value": "{% for item in selector:.leftside .spaceit_pad %}{% set infos = item|split:\\\":\\\" %}{% set category = infos|first %}{% if category == \\\"Synonyms\\\" %}{{infos|last|trim}}{% endif %}{% endfor %}",
+			"type": "multitext"
+		},
+		{
+			"name": "cover",
+			"value": "{{image}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https://myanimelist.net/manga/"
+	],
+	"noteNameFormat": "{{title|replace:\"/\":\"⧸\"|safe_name}}",
+	"path": "Clippings"
+}
